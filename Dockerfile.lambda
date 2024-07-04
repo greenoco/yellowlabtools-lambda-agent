@@ -31,6 +31,7 @@ ADD . /var/task
 
 RUN mkdir -p /puppeteer-cache && rm -rf node_modules && \
     npm install jpegoptim-bin --unsafe-perm=true --allow-root && \
-    NODE_ENV=production && npm install --only=prod
+    NODE_ENV=production && npm install --only=prod && \
+    sed -i '35 s/^/\/\//' node_modules/phantomas/lib/browser.js
 
 CMD [ "lambda.runner" ]
